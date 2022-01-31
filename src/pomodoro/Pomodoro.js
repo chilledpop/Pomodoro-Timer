@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import classNames from "../utils/class-names";
-import { minutesToDuration, secondsToDuration } from "../utils/duration";
+import { minutesToDuration } from "../utils/duration";
 import useInterval from "../utils/useInterval";
 import TimerDisplay from "./TimerDisplay";
+import TimerControl from "./TimerControl";
 
 // These functions are defined outside of the component to ensure they do not have access to state
 // and are, therefore, more likely to be pure.
@@ -70,8 +70,6 @@ function Pomodoro() {
       const nextState = !prevState;
       if (nextState) {
         setSession((prevStateSession) => {
-          // If the timer is starting and the previous session is null,
-          // start a focusing session.
           if (prevStateSession === null) {
             return {
               label: "Focusing",
@@ -108,7 +106,7 @@ function Pomodoro() {
   const handleStopSession = () => {
     setIsTimerRunning(false);
     setSession(null);
-    setFocusDuration(25);
+    setFocusDuration(25)
     setBreakDuration(5);
   }
 
@@ -173,47 +171,20 @@ function Pomodoro() {
         </div>
       </div>
       <div className="row">
-        <div className="col">
-          <div
-            className="btn-group btn-group-lg mb-2"
-            role="group"
-            aria-label="Timer controls"
-          >
-            <button
-              type="button"
-              className="btn btn-primary"
-              data-testid="play-pause"
-              title="Start or pause timer"
-              onClick={playPause}
-            >
-              <span
-                className={classNames({
-                  oi: true,
-                  "oi-media-play": !isTimerRunning,
-                  "oi-media-pause": isTimerRunning,
-                })}
-              />
-            </button>
-            {/* TODO: Implement stopping the current focus or break session. and disable the stop button when there is no active session */}
-            {/* TODO: Disable the stop button when there is no active session */}
-            <button
-              type="button"
-              className="btn btn-secondary"
-              data-testid="stop"
-              title="Stop the session"
-              onClick={handleStopSession}
-              disabled={!session}
-            >
-              <span className="oi oi-media-stop" />
-            </button>
-          </div>
-        </div>
+        <TimerControl
+          isTimerRunning={isTimerRunning}
+          session={session}
+          playPause={playPause}
+          handleStopSession={handleStopSession}  
+        />
       </div>
-      <TimerDisplay 
-        session={session}
-        focusDuration={focusDuration}
-        breakDuration={breakDuration}
-      />
+      <div>
+        <TimerDisplay 
+          session={session}
+          focusDuration={focusDuration}
+          breakDuration={breakDuration}
+        />
+      </div>
     </div>
   );
 }
