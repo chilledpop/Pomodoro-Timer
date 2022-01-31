@@ -3,17 +3,19 @@ import React from "react";
 
 function TimerDisplay({ session, focusDuration, breakDuration }) {
   if (!session) return null;
+
+  const value = 100 - (100 * session.timeRemaining) / 
+    (session.label === "Focusing" ? focusDuration * 60 : breakDuration * 60);
+
+  
   return (
     <>
       <div>
-        {/* TODO: This area should show only when there is an active focus or break - i.e. the session is running or is paused */}
         <div className="row mb-2">
           <div className="col">
-            {/* TODO: Update message below to include current session (Focusing or On Break) total duration */}
             <h2 data-testid="session-title">
               {session.label} for {session.label === "Focusing" ? minutesToDuration(focusDuration) : minutesToDuration(breakDuration)} minutes
             </h2>
-            {/* TODO: Update message below correctly format the time remaining in the current session */}
             <p className="lead" data-testid="session-sub-title">
               {secondsToDuration(session.timeRemaining)} remaining
             </p>
@@ -27,8 +29,8 @@ function TimerDisplay({ session, focusDuration, breakDuration }) {
                 role="progressbar"
                 aria-valuemin="0"
                 aria-valuemax="100"
-                aria-valuenow="0" // TODO: Increase aria-valuenow as elapsed time increases
-                style={{ width: "0%" }} // TODO: Increase width % as elapsed time increases
+                aria-valuenow={value}
+                style={{ width: `${value}%` }}
               />
             </div>
           </div>
