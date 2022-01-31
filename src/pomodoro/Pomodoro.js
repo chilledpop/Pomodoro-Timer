@@ -84,23 +84,19 @@ function Pomodoro() {
   }
 
   const handleDecreaseFocusDuration = () => {
-    if (focusDuration === 5) return focusDuration;
-    setFocusDuration((focusDuration) => focusDuration - 5);
+    setFocusDuration(Math.max(5, focusDuration - 5));
   }
 
   const handleIncreaseFocusDuration = () => {
-    if (focusDuration === 60) return focusDuration;
-    setFocusDuration((focusDuration) => focusDuration + 5);
+    setFocusDuration(Math.min(60, focusDuration + 5));
   }
 
   const handleDecreaseBreakDuration = () => {
-    if (breakDuration === 1) return breakDuration;
-    setBreakDuration((breakDuration) => breakDuration - 1);
+    setBreakDuration(Math.max(1, breakDuration - 1));
   }
 
   const handleIncreaseBreakDuration = () => {
-    if (breakDuration === 15) return breakDuration;
-    setBreakDuration((breakDuration) => breakDuration + 1);
+    setBreakDuration(Math.min(15, breakDuration + 1));
   }
 
   const handleStopSession = () => {
