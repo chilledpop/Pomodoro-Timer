@@ -5,7 +5,7 @@ The technique uses a timer to break down work into intervals, traditionally 25 m
 Each interval is known as a pomodoro, from the Italian word for tomato, after the tomato-shaped kitchen timer that Cirillo used as a university student.
 
 
-##The Pomodoro Timer implements these steps:
+The Pomodoro Timer implements these steps:
 Sets the focus duration (default to 25 minutes, no less than 5 or more than 60).
 Set the break duration (default to 5 minutes, no less than 1 or more than 15).
 When the user clicks the Play button, the timer starts.
@@ -21,6 +21,7 @@ Run npm install.
 To run the tests, you can run the following command:
 
 npm test
+
 You can run the application using the following command.
 
 npm start
