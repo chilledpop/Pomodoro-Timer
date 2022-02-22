@@ -15,6 +15,8 @@ Each interval is known as a pomodoro, from the Italian word for tomato, after th
 ## Technology
 - React
 - Bootstrap
+- Javascript
+- CSS
 
 ## Project objectives
 This project tested my ability to work with rendering and state management in React. It emphasized my skills of installing packages, running tests from the command line, writing React function components, using hooks, and debugging through console output.
